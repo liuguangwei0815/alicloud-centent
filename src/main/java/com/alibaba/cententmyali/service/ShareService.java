@@ -4,6 +4,7 @@ import com.alibaba.cententmyali.dao.centent.ShareMapper;
 import com.alibaba.cententmyali.domain.dto.ShareDto;
 import com.alibaba.cententmyali.domain.dto.UserDto;
 import com.alibaba.cententmyali.domain.entity.centent.Share;
+import com.alibaba.cententmyali.feignclient.UserCenterFeign;
 import com.alibaba.cententmyali.result.Result;
 import com.alibaba.fastjson.JSON;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,20 @@ public class ShareService {
     private final RestTemplate restTemplate;
 
     private final DiscoveryClient discoveryClient;
+
+    private final UserCenterFeign userCenterFeign;
+
+
+    /**
+     * getmulpam get方法参数多参数
+     *
+     * @param dto dto
+     * @return {@link Result<UserDto>}
+     */
+    public UserDto getmulpam(UserDto dto){
+        return userCenterFeign.getmulpam(dto);
+    }
+
 
 
     /**
@@ -68,10 +83,12 @@ public class ShareService {
 
         String url = "http://user-center/users/"+id;
 
-        Result userDtoResult = restTemplate.getForObject(url, Result.class);
+//        Result userDtoResult = restTemplate.getForObject(url, Result.class);
+        //使用restemplate 可能url难以为未付
+        Result<UserDto> userDtoResult = userCenterFeign.getuser(id);
+
         //map 转  对象
-        LinkedHashMap map = (LinkedHashMap)userDtoResult.getData();
-        UserDto userDto = JSON.parseObject(JSON.toJSONString(map), UserDto.class);
+        UserDto userDto = userDtoResult.getData();
 
         //消息的封装
         ShareDto shareDto = new ShareDto();

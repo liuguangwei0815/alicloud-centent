@@ -36,5 +36,6 @@ public class UserDto {
 
     private String phone;
 
-
+    //多余的属性和内容中心不一致
+    private String duoyu;
 }

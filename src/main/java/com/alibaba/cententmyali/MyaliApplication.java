@@ -1,10 +1,12 @@
 package com.alibaba.cententmyali;
 
+import com.alibaba.cententmyali.configure.FeignLogLevelConfiguration;
 import org.springframework.boot.ResourceBanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.client.RestTemplate;
@@ -13,6 +15,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @MapperScan("com.alibaba")
 @EnableDiscoveryClient
+@EnableFeignClients //(defaultConfiguration = FeignLogLevelConfiguration.class)
 public class MyaliApplication {
 
     @Bean
