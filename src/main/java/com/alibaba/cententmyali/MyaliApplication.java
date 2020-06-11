@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
-@MapperScan("com.alibaba")
+@MapperScan("com.alibaba.cententmyali.dao")
 @EnableDiscoveryClient
 @EnableFeignClients //(defaultConfiguration = FeignLogLevelConfiguration.class)
 public class MyaliApplication {
