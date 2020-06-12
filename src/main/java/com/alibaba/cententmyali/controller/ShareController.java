@@ -6,6 +6,7 @@ import com.alibaba.cententmyali.feignclient.TestBaiduPageFeign;
 import com.alibaba.cententmyali.feignclient.UserCenterFeign;
 import com.alibaba.cententmyali.result.Result;
 import com.alibaba.cententmyali.service.ShareService;
+import com.alibaba.cententmyali.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +48,7 @@ public class ShareController {
 
 
     //=================feign 的多参数请求END
+
     @Autowired
     private TestBaiduPageFeign testBaiduPageFeign;
     @GetMapping
@@ -55,6 +57,23 @@ public class ShareController {
     }
 
 
+    //==========测试族点链路的流控模式-链路start
+
+    @Autowired
+    private TestService testService;
+
+    @GetMapping("test-a")
+    public String testa(){
+        testService.common();
+        return "test-a";
+    }
+    @GetMapping("test-b")
+    public String testb(){
+        testService.common();
+        return "test-b";
+    }
+
+    //=================================end
 
 
 

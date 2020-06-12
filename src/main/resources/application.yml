@@ -16,12 +16,15 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.2.106:8848 #nacos 配置 这里是ip：端口  或者是域名：端口 不能签名加上http：// ip : 端口
+        server-addr: 172.20.10.5:8848 #nacos 配置 这里是ip：端口  或者是域名：端口 不能签名加上http：// ip : 端口
         cluster-name: BJ #nacose 配置集群名称 配置集群为BJ 北京机房
         metadata:
           version: v1
           target-version: v1
         #namespace: dc336d46-0e74-4eda-8192-f58bebb838a7
+    sentinel:
+      transport:
+        dashboard: localhost:8080 #sentinel的dashboard
 logging:
   level:
     #这里一定要debg 否者不会打印任何信息(不管是java 配置 还是 yml 配置 都需要这个)
@@ -49,5 +52,4 @@ management:
     web:
       exposure:
         include: '*'
-
 
